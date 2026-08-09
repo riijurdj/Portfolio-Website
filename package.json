@@ -1,0 +1,16 @@
+{
+  "name": "riiju-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal portfolio website for Riiju Jagetiya - MERN stack, fully admin-editable",
+  "scripts": {
+    "dev": "concurrently -n SERVER,CLIENT -c blue,green \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client",
+    "seed": "node server/seed.js",
+    "build": "npm run build --prefix client",
+    "start": "npm run start --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

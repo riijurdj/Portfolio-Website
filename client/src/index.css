@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Each theme sets: surface/text/border tokens, an accent pair (--accent-cyan /
+ * --accent-blue — named after the original palette, but any theme is free to
+ * point them at different hues), and glow shadow colors. To add a new theme:
+ * add a block here plus an entry in client/src/context/ThemeContext.jsx's
+ * THEMES list.
+ */
+
+/* Default (fallback before JS applies data-theme, and if JS is unavailable) is dark. */
+:root,
+:root[data-theme='dark'] {
+  --bg-primary: #0a0f1e;
+  --bg-secondary: #0d1527;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --accent-cyan: #00d4ff;
+  --accent-blue: #3b82f6;
+  --shadow-glow: rgba(0, 212, 255, 0.35);
+  --shadow-glow-lg: rgba(0, 212, 255, 0.45);
+}
+
+:root[data-theme='neon-green'] {
+  --bg-primary: #050b08;
+  --bg-secondary: #081a10;
+  --bg-card: rgba(57, 255, 136, 0.05);
+  --text-primary: #f2fff6;
+  --text-secondary: #c8f5d8;
+  --text-muted: #8fd6ab;
+  --border-subtle: rgba(57, 255, 136, 0.14);
+  --accent-cyan: #39ff88;
+  --accent-blue: #00c46a;
+  --shadow-glow: rgba(57, 255, 136, 0.35);
+  --shadow-glow-lg: rgba(57, 255, 136, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Poppins', system-ui, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent-cyan), var(--accent-blue));
+  border-radius: 999px;
+}
+
+@layer components {
+  .section-shell {
+    @apply min-h-screen w-full flex flex-col justify-center px-6 sm:px-10 lg:px-24 py-24 relative;
+  }
+
+  .glass-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    @apply rounded-2xl transition-colors duration-300;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent-cyan to-accent-blue bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-[#04121e]
+      bg-gradient-to-r from-accent-cyan to-accent-blue shadow-glow
+      hover:shadow-glow-lg hover:scale-105 active:scale-95 transition-all duration-300;
+  }
+
+  .btn-outline {
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold
+      hover:border-accent-cyan hover:text-accent-cyan hover:scale-105 active:scale-95 transition-all duration-300;
+  }
+
+  .section-heading {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4;
+  }
+
+  .section-eyebrow {
+    @apply uppercase tracking-[0.3em] text-xs sm:text-sm font-semibold text-accent-cyan mb-3;
+  }
+
+  .skill-pill {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    @apply flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium
+      transition-all duration-300 hover:border-accent-cyan hover:text-accent-cyan
+      hover:shadow-glow hover:-translate-y-0.5;
+  }
+}
