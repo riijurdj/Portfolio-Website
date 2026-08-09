@@ -30,14 +30,14 @@ Everything below is editable live from `/admin`, with changes reflected on the s
 | Entirely new custom sections | Custom Sections |
 | Show/hide any section on the live site | Section Visibility |
 | **Admin login email & password** | Account |
-| Site theme (Dark / Light / Neon Green) | Theme switcher (top right, public site & admin) |
+| Site theme (Dark / Neon Green) | Theme toggle button (top right, public site & admin) |
 
 Photo and resume uploads are stored as base64 directly in MongoDB — not as files on the server — so they survive redeploys and work on hosts with ephemeral/read-only filesystems (Render, Railway, Vercel, etc.) without any extra configuration.
 
 ### Things that do still require a code change
 
 To keep expectations honest, a few things are intentionally code-level rather than admin-editable, since they're rare, structural changes rather than content updates:
-- Adding a brand-new **theme** beyond the three built in (Dark/Light/Neon Green) — see `client/src/context/ThemeContext.jsx` and `client/src/index.css`.
+- Adding a brand-new **theme** beyond the two built in (Dark/Neon Green) — see `client/src/context/ThemeContext.jsx` and `client/src/index.css`.
 - The site favicon (`client/public/favicon.svg`) and Google Fonts choice (`client/index.html`).
 - Section **order** on the page (currently fixed in `client/src/App.jsx`).
 
