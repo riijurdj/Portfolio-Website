@@ -110,6 +110,8 @@ npm run dev
 | `JWT_EXPIRES_IN` | server | No (default `7d`) | How long an admin login stays valid before it must be renewed |
 | `JWT_SECRET` | server | No | See [Admin sessions & JWT_SECRET](#admin-sessions--jwt_secret) below — recommended for hosted deployments |
 | `ADMIN_EMAIL` / `ADMIN_PASSWORD` | server | Only for the first `npm run seed` | Creates the initial admin user. Change credentials afterward from the Account tab, not here |
+| `RESEND_API_KEY` | server | No | Enables email notifications when someone submits the Contact form — sent via [Resend](https://resend.com) to the Contact section's email address. Messages still save to MongoDB either way; this only adds the email alert. Get a key from the Resend dashboard |
+| `RESEND_FROM_EMAIL` | server | No | Sender shown on notification emails, e.g. `Portfolio Contact Form <you@yourdomain.com>`. Defaults to Resend's `onboarding@resend.dev`, which works immediately with no setup but is meant for light use — verify your own domain in Resend for a production sender |
 | `VITE_API_BASE_URL` | client | Yes | Base URL the frontend uses to call the API, e.g. `https://your-api.example.com/api` |
 
 ### Admin sessions & JWT_SECRET
@@ -158,6 +160,7 @@ This is a two-part deployment: a static frontend and a Node API, plus a hosted d
 - [ ] Admin password changed from the default via the Account tab (or set a strong `ADMIN_PASSWORD` before the first seed)
 - [ ] Real resume uploaded via the Hero tab
 - [ ] Real profile photo uploaded via Hero/About tabs
+- [ ] `RESEND_API_KEY` set on the backend host if you want Contact form submissions to email you (optional)
 - [ ] `.env` files are **not** committed (already covered by `.gitignore`)
 - [ ] CORS: the API allows all origins by default (`cors()` in `server/index.js`), which is fine for a public read-only portfolio API and doesn't expose the admin routes since those require a bearer token regardless of origin. Restrict it to your frontend's domain in `server/index.js` if you want to lock it down further.
 
